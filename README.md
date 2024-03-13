@@ -295,8 +295,12 @@ DEFAULT_FORWARD_POLICY="ACCEPT"
 
 Setup firewall settings and enabling firewall
 ```bash
+ufw allow OpenSSH
 ufw allow 2222
 ufw allow 443
+ufw allow 80
+ufw allow 53
+ufw disable
 ufw enable
 ```
 
