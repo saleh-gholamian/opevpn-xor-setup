@@ -6,6 +6,8 @@ Openvpn XOR Patch installation guide on Ubuntu server
 **#0 Change ssh port**
 ```bash
 nano /etc/ssh/sshd_config
+```
+```bash
 systemctl restart sshd
 ```
 
