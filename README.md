@@ -253,16 +253,10 @@ systemctl start openvpn@server
 **#14 Check that it is active and listening on the expected port:**
 ```bash
 systemctl status openvpn@server
+```
+```bash
 ss -tulpn | grep openvpn
 ```
-
-
-
-**#**
-```bash
-
-```
-
 
 
 
