@@ -190,30 +190,64 @@ scramble obfuscate <Code>
 
 
 
-**#**
+**#11 Create a systemd service file for OpenVPN:**
 ```bash
+nano /lib/systemd/system/openvpn@.service
+```
+```bash
+[Unit]
+Description=OpenVPN connection to %i
+PartOf=openvpn.service
+ReloadPropagatedFrom=openvpn.service
+Before=systemd-user-sessions.service
+After=network-online.target
+Wants=network-online.target
+Documentation=man:openvpn(8)
+Documentation=https://community.openvpn.net/openvpn/wiki/Openvpn24ManPage
+Documentation=https://community.openvpn.net/openvpn/wiki/HOWTO
 
+[Service]
+Type=notify
+PrivateTmp=true
+WorkingDirectory=/etc/openvpn
+ExecStart=/usr/local/sbin/openvpn --daemon ovpn-%i --status /run/openvpn/%i.status 10 --cd /etc/openvpn --config /etc/openvpn/%i.conf --writepid /run/openvpn/%i.pid
+PIDFile=/run/openvpn/%i.pid
+KillMode=process
+ExecReload=/bin/kill -HUP $MAINPID
+CapabilityBoundingSet=CAP_IPC_LOCK CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW CAP_SETGID CAP_SETUID CAP_SYS_CHROOT CAP_DAC_OVERRIDE CAP_AUDIT_WRITE
+LimitNPROC=100
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/net/tun rw
+ProtectSystem=true
+ProtectHome=true
+RestartSec=5s
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 
 
-**#**
+**#12 Create the directory for the process identification (pid) file:**
 ```bash
-
+mkdir /run/openvpn
 ```
 
 
 
-**#**
+**#13 Start OpenVPN on the server:**
 ```bash
-
+systemctl enable openvpn@server
+systemctl start openvpn@server
 ```
 
 
 
-**#**
+**#14 Check that it is active and listening on the expected port:**
 ```bash
-
+systemctl status openvpn@server
+ss -tulpn | grep openvpn
 ```
 
 
