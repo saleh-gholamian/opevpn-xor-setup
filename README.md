@@ -22,8 +22,12 @@ apt update && apt upgrade -y
 
 **#2 Enable IPv4 forwadring**
 ```bash
-echo 1 > /proc/sys/net/ipv4/ip_forward
-cat /proc/sys/net/ipv4/ip_forward
+sudo nano /etc/sysctl.conf
+```
+
+Then add the following line at the bottom of the file:
+```bash
+net.ipv4.ip_forward = 1
 ```
 
 
