@@ -148,8 +148,8 @@ Copy all the keys and certificates into OpenVPN directory:
 cp pki/ca.crt /etc/openvpn
 cp pki/private/server.key /etc/openvpn/server
 cp pki/issued/server.crt /etc/openvpn/server
-cp pki/private/client_name.key /etc/openvpn/client_name.key
-cp pki/issued/client_name.crt /etc/openvpn/client_name.crt
+cp pki/private/client.key /etc/openvpn/client.key
+cp pki/issued/client.crt /etc/openvpn/client.crt
 cp pki/tls-crypt.key /etc/openvpn
 cp pki/dh.pem /etc/openvpn
 ```
