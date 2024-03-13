@@ -271,17 +271,8 @@ sudo nano /etc/ufw/before.rules
 
 Add blow command in rules file.
 *Remember to replace eth0 in the -A POSTROUTING line below with the interface you found in the above command:*
+
 ```bash
-#
-# rules.before
-#
-# Rules that should be run before the ufw command line added rules. Custom
-# rules should be added to one of these chains:
-#   ufw-before-input
-#   ufw-before-output
-#   ufw-before-forward
-#
- 
 # START OPENVPN RULES
 # NAT table rules
 *nat
@@ -290,10 +281,6 @@ Add blow command in rules file.
 -A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
 COMMIT
 # END OPENVPN RULES
- 
-# Don't delete these required lines, otherwise there will be errors
-*filter
-. . .
 ```
 
 open the /etc/default/ufw file:
