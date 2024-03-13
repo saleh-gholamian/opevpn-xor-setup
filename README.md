@@ -116,6 +116,7 @@ Build Certificate Authority (CA):
 ```bash
 ./easyrsa build-ca nopass
 ```
+Press Enter...
 
 Generate and sign your server key and certificate:
 ```bash
