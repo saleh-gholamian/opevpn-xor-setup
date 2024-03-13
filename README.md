@@ -120,12 +120,16 @@ Build Certificate Authority (CA):
 Generate and sign your server key and certificate:
 ```bash
 ./easyrsa gen-req server nopass
+```
+```bash
 ./easyrsa sign-req server server
 ```
 
 Generate and sign your client key and certificate:
 ```bash
 ./easyrsa gen-req client nopass
+```
+```bash
 ./easyrsa sign-req client client
 ```
 
