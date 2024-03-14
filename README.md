@@ -222,6 +222,7 @@ PrivateTmp=true
 WorkingDirectory=/etc/openvpn
 ExecStartPre=/bin/bash -c 'if [ ! -d "/run/openvpn" ]; then mkdir -p /run/openvpn; fi'
 ExecStart=/usr/local/sbin/openvpn --daemon ovpn-%i --status /run/openvpn/%i.status 10 --cd /etc/openvpn --config /etc/openvpn/%i.conf --writepid /run/openvpn/%i.pid
+ExecStartPost=/sbin/iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
 PIDFile=/run/openvpn/%i.pid
 KillMode=process
 ExecReload=/bin/kill -HUP $MAINPID
