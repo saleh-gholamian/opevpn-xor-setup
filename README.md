@@ -267,28 +267,6 @@ ss -tulpn | grep openvpn
 
 
 **#14 Firewall Configuration (ufw):**
-```bash
-ip route list default
-```
-
-```bash
-sudo nano /etc/ufw/before.rules
-```
-
-Add blow command in rules file.
-*Remember to replace eth0 in the -A POSTROUTING line below with the interface you found in the above command:*
-
-```bash
-# START OPENVPN RULES
-# NAT table rules
-*nat
-:POSTROUTING ACCEPT [0:0]
-# Allow traffic from OpenVPN client to eth0 (change to the interface you discovered!)
--A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
-COMMIT
-# END OPENVPN RULES
-```
-
 open the /etc/default/ufw file:
 ```bash
 sudo nano /etc/default/ufw
