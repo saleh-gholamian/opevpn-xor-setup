@@ -189,7 +189,7 @@ push "dhcp-option DNS 1.0.0.1"
 push "dhcp-option DNS 1.1.1.1"
 keepalive 10 120
 topology subnet
-cipher AES-128-GCM
+cipher AES-256-CBC
 tls-crypt /etc/openvpn/tls-crypt.key
 persist-key
 persist-tun
