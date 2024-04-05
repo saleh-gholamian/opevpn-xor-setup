@@ -193,6 +193,7 @@ cipher AES-128-GCM
 tls-crypt /etc/openvpn/tls-crypt.key
 persist-key
 persist-tun
+duplicate-cn
 status openvpn-status.log
 verb 3
 scramble obfuscate <Code>
