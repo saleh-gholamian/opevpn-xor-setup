@@ -283,39 +283,8 @@ Run the following command and see the output
 ip route list default
 ```
 
-open the -/etc/ufw/before.rules- file to add the relevant configuration:
-```bash
-nano /etc/ufw/before.rules
-```
-
-Replace the eth0 value in the -A POSTROUTING line below with the interface you found in the command above:
-```bash
-# rules.before
-#
-# Rules that should be run before the ufw command line added rules. Custom
-# rules should be added to one of these chains:
-#   ufw-before-input
-#   ufw-before-output
-#   ufw-before-forward
-#
- 
-# START OPENVPN RULES
-# NAT table rules
-*nat
-:POSTROUTING ACCEPT [0:0]
-# Allow traffic from OpenVPN client to eth0 (change to the interface you discovered!)
--A POSTROUTING -s 10.8.0.0/8 -o eth0 -j MASQUERADE
-COMMIT
-# END OPENVPN RULES
- 
-# Don't delete these required lines, otherwise there will be errors
-*filter
-. . .
-```
-
 Setup firewall settings and enabling firewall
 ```bash
-ufw allow OpenSSH
 ufw allow 2222
 ufw allow 443
 ufw allow 80
